@@ -1,0 +1,24 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+<h1>Bienvenue sur DSRML <small>with Django</small></h1>
+
+{% for service in all_services %}
+	<div class="service">
+		
+		<h3>{{service.nom}} <small>{{service.status}}</small></h3>
+	
+		<blockquote>
+		
+		
+		<p><footer>><a class="btn btn-default" href="{% url "blog.views.lire" service.id %}">lire la suite</a></footer</p>
+		</blockquote>
+		
+	</div>
+{% empty %}
+	<p>Aucun service dans la base.</p>
+	
+{% endfor %}
