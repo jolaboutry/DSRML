@@ -1,0 +1,36 @@
+{% extends "blog/base.html" %}
+{% block title %} Home DSRML  {% endblock %}
+
+{% block content-header %}
+<h1>
+	beta
+	<small>services</small>
+</h1>
+<ol class="breadcrumb">
+	<li><a href="/blog"><i class="fa fa-dashboard"></i> Home</a></li>
+	<li class="active">Services</li>
+	<li class="active">beta</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+
+
+{% for service in servicesBeta %}
+	<div class="service">
+		
+		<h3>{{service.nom}} <small>{{service.status}}</small></h3>
+	
+		<blockquote>
+		
+			<p><footer>><a href="{% url "blog.views.lire" service.id %}">lire la suite</a></footer</p>
+	
+		</blockquote>
+		
+	</div>
+{% empty %}
+	<p>Aucun service dans la base.</p>
+	
+{% endfor %}
+
+{% endblock %}

@@ -1,10 +1,106 @@
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+{% extends "blog/base.html" %}
+{% block title %} Home DSRML  {% endblock %}
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+{% block content-header %}
+<h1>
+	Dashboard
+	<small>Home</small>
+</h1>
+<ol class="breadcrumb">
+	<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+	<li class="active">Dashboard</li>
+</ol>
+{% endblock %}
 
-<h1>Bienvenue sur DSRML <small>with Django</small></h1>
+{% block content %}
+
+
+   <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <div class="col-lg-5 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-green">
+                                <div class="inner">
+                                    <h3>
+                                        150
+                                    </h3>
+                                    <p>
+                                        AFS@Store
+                                    </p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-bag"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">
+                                    More info <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div><!-- ./col -->
+                        <div class="col-lg-5 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-aqua">
+                                <div class="inner">
+                                    <h3>
+                                        53
+                                    </h3>
+                                    <p>
+                                        FluidTopics
+                                    </p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-android-book"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">
+                                    More info <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div><!-- ./col -->
+                        <div class="col-lg-5 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-yellow">
+                                <div class="inner">
+                                    <h3>
+                                        44
+                                    </h3>
+                                    <p>
+                                        AFS
+                                    </p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-search"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">
+                                    More info <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div><!-- ./col -->
+                        <div class="col-lg-5 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-red">
+                                <div class="inner">
+                                    <h3>
+                                        65
+                                    </h3>
+                                    <p>
+                                        Licence
+                                    </p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-android-storage"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">
+                                    More info <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div><!-- ./col -->
+                    </div><!-- /.row -->
+
+
+
+
+
+
+
 
 {% for service in all_services %}
 	<div class="service">
@@ -13,8 +109,8 @@
 	
 		<blockquote>
 		
-		
-		<p><footer>><a class="btn btn-default" href="{% url "blog.views.lire" service.id %}">lire la suite</a></footer</p>
+			<p><footer>><a href="{% url "blog.views.lire" service.id %}">lire la suite</a></footer</p>
+	
 		</blockquote>
 		
 	</div>
@@ -22,3 +118,25 @@
 	<p>Aucun service dans la base.</p>
 	
 {% endfor %}
+
+
+<h2>Liste de Indexeurs
+{% for serv in servs %}
+	<div class="indexeur">
+		
+		<h5>{{serv.nom}} </h5>
+	
+		<blockquote>
+		
+			<p><footer>><a href="{% url "blog.views.indexeur" serv.id %}">lire la suite</a></footer</p>
+	
+		</blockquote>
+		
+	</div>
+{% empty %}
+	<p>Aucun Indexeur dans la base.</p>
+	
+{% endfor %}
+</h2>
+
+{% endblock %}

@@ -1,2 +1,40 @@
-<h1>{{service.nom}}<span class="small">en {{service.status.nom}} </span></h1>
-<p class="infos">desc {{service.description}}</p>
+
+{% extends "blog/base.html" %}
+{% block title %} Detail {{service.nom}} - {{service.status.nom}}  {% endblock %}
+{% block content-header %}
+<h1>
+	Détail
+	<small>{{service.nom}} - {{service.status.nom}}</small>
+</h1>
+<ol class="breadcrumb">
+	<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+	<li class="active">Détail</li>
+</ol>
+{% endblock %}
+
+
+{% block content %}
+<div class="box box-solid">
+	<div class="box-header">
+		<h1>{{service.nom}}<span class="small"> en {{service.status.nom}} </span></h1>
+	</div>
+	<div class="callout callout-info">
+		{{service.description}} <br>
+		<b>Client : </b> {{service.client}}
+	</div>
+	<div class="box-body">
+		{% for feed in feeds %}
+				<h4>{{feed.nom}} </h4>
+				<b>Indexeur : </b>{{feed.indexeur}} <br>
+				<b>Path : </b>{{feed.path}} <br>
+				{% for rep in feed.repondeur.all %}<b>Repondeur : </b>{{ rep }}<br/>{% endfor %}
+					<div class="callout callout-warning">
+						<h4>MONITORING </h4>
+						<b>Freshness : </b>{{feed.freshness}} <br> </p>
+					</div>
+		{% empty %}
+			<p>Aucun service dans la base.</p>
+		{% endfor %}	
+	</div>
+</div>		
+{% endblock %}
