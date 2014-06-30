@@ -24,21 +24,24 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = (
+    'djangocms_admin_style',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog',
 
-    'blog'
+
 )
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -81,7 +84,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_URL = '/assets/'
-STATICFILES_DIRS = ("/Users/mfy/Documents/Aptana Studio 3 Workspace/dsrml/assets/",)
+STATIC_URL = '/static/'
+STATICFILES_DIRS = ("/Users/mfy/Documents/Aptana Studio 3 Workspace/dsrml/static/",)
 
 TEMPLATE_DIRS = ('/Users/mfy/Documents/Aptana Studio 3 Workspace/dsrml/templates')
+
+TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+
+    "blog.context_processors.getInfos",
+)
