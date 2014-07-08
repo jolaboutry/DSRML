@@ -87,5 +87,6 @@ class Freshness(models.Model):
         verbose_name_plural = "Freshness"
     
     def __unicode__(self):
-        return (self.warning_threshold, self.critical_threshold, self.monitoring)
+        return "%s - %s - %s" %(self.warning_threshold, self.critical_threshold, self.monitoring)
+#        return (self.warning_threshold, self.critical_threshold, self.monitoring)
 
