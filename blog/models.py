@@ -1,14 +1,14 @@
 #-*- coding: utf-8 -*-
 from django.db import models
+import blog.sondes as sondes
 
 # Create your models here.
 
-STATUS = (
-    ('STABLE','stable' ),
-    ('RC', 'rc'),
-    ('BETA','beta'),
-    ('ALPHA', 'alpha'),
-    ('SANDBOX','sandbox')
+TYPE = (
+    ('AFS@STORE','store' ),
+    ('FLUID TOPICS', 'ft'),
+    ('AFS','afs'),
+    ('LICENCE', 'licence')
 )
 
 class Service(models.Model):
@@ -22,11 +22,10 @@ class Service(models.Model):
     client = models.CharField(max_length=20, null=True, blank=True)
     cdp = models.CharField(max_length=20, null=True, blank=True)
     status = models.ForeignKey('Status')
+    type = models.CharField(max_length = 25, choices=TYPE)
     #FEEDS
-    
     feeds = models.ManyToManyField('Feed', blank=True, null=True, through='FeedToService')
-    
-    
+   
     
     def __unicode__(self):
         return "%s " %(self.nom)
@@ -49,6 +48,11 @@ class Feed(models.Model):
     repondeur = models.ManyToManyField('Repondeur') 
     #SONDES
     freshness = models.ForeignKey('Freshness')
+    page_range = models.ForeignKey('Page_range')
+    sanity = models.ForeignKey('Sanity')
+    last_indexation = models.ForeignKey('Last_indexation')
+    result_count = models.ForeignKey('Result_count')
+
     
     class Meta:
         verbose_name_plural = "Feeds"
@@ -78,15 +82,4 @@ class Repondeur(models.Model):
 
     
     
-#sondes    
-class Freshness(models.Model):
-    monitoring = models.BooleanField(default=False) 
-    warning_threshold = models.IntegerField(max_length=4)
-    critical_threshold = models.IntegerField(max_length=4)
-    class Meta:
-        verbose_name_plural = "Freshness"
-    
-    def __unicode__(self):
-        return "%s - %s - %s" %(self.warning_threshold, self.critical_threshold, self.monitoring)
-#        return (self.warning_threshold, self.critical_threshold, self.monitoring)
 

@@ -1,6 +1,8 @@
 #-*- coding: utf-8 -*-
 from django.contrib import admin
-from blog.models import Service, Indexeur, Feed, Freshness, Status, FeedToService, Repondeur
+#from blog.models import Service, Indexeur, Feed, Freshness, Status, FeedToService, Repondeur, Page_range
+from blog.models import Service, Indexeur, Feed, Status, FeedToService, Repondeur
+import blog.sondes as sondes
 
 
 class FeedInLine(admin.TabularInline):
@@ -8,8 +10,8 @@ class FeedInLine(admin.TabularInline):
     
     
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ('service_id', 'nom','status')
-    list_filter = ('nom', 'status','client')
+    list_display = ('service_id', 'nom','status','type')
+    list_filter = ('nom', 'status','client','type')
     search_fields = ('service_id', 'nom','mep','client')
     inlines = [
         FeedInLine,
@@ -18,7 +20,7 @@ class ServiceAdmin(admin.ModelAdmin):
     fieldsets = (
                  ('Infos',{
                           # 'classes': ['collapse','wide'],
-                           'fields': ('service_id','nom','dev', 'mep','client','cdp')
+                           'fields': ('service_id','nom','type', 'dev', 'mep','client','cdp')
                            }),
                  ('status',{
                              # 'description': 'description',
@@ -44,6 +46,12 @@ class ServiceAdmin(admin.ModelAdmin):
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(Indexeur)
 admin.site.register(Feed)
-admin.site.register(Freshness)
 admin.site.register(Status)
 admin.site.register(Repondeur)
+
+admin.site.register(sondes.Freshness)
+admin.site.register(sondes.Page_range)
+admin.site.register(sondes.Sanity)
+admin.site.register(sondes.Result_count)
+admin.site.register(sondes.Last_indexation)
+admin.site.register(sondes.Acp)

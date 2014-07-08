@@ -17,7 +17,16 @@ def getInfos(request):
     servicesBeta = Service.objects.filter(status__nom__contains=u"BETA")
     countServicesBeta = Service.objects.filter(status__nom__contains=u"BETA").count()
     servicesBeta5 = Service.objects.filter(status__nom__contains=u"BETA")[:5]
+    
+    nbStore = Service.objects.filter(type=u"AFS@STORE").count()
+    nbFT = Service.objects.filter(type=u"FLUID TOPICS").count()
+    nbAFS = Service.objects.filter(type=u"AFS").count()
+    nbLicence = Service.objects.filter(type=u"LICENCE").count()
+    
+    
+    
     return {'all_services':services,'servs':indexeurs,
                                                  'servicesStable':servicesStable, '5firstStable':servicesStable5,'nbStable':countServicesStable,
                                                  'servicesRc':servicesRc, '5firstRc':servicesRc5,'nbRc':countServicesRc,
-                                                 'servicesBeta':servicesBeta, '5firstBeta':servicesBeta5,'nbBeta':countServicesBeta,}
+                                                 'servicesBeta':servicesBeta, '5firstBeta':servicesBeta5,'nbBeta':countServicesBeta,
+                                                 'nbStore':nbStore, 'nbFT':nbFT, 'nbAFS': nbAFS, 'nbLicence':nbLicence}

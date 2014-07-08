@@ -85,9 +85,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = ("/Users/mfy/Documents/Aptana Studio 3 Workspace/dsrml/static/",)
+STATICFILES_DIRS = ("/Users/ymfinidori/MyScripts/DSRML/static/",)
 
-TEMPLATE_DIRS = ('/Users/mfy/Documents/Aptana Studio 3 Workspace/dsrml/templates')
+TEMPLATE_DIRS = ('/Users/ymfinidori/MyScripts/DSRML/templates')
 
 TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
