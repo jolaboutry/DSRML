@@ -11,7 +11,7 @@ class FeedInLine(admin.TabularInline):
     
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ('service_id', 'nom','status','type')
-    list_filter = ('nom', 'status','client','type')
+    list_filter = ( 'status','client','type')
     search_fields = ('service_id', 'nom','mep','client')
     inlines = [
         FeedInLine,

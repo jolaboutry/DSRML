@@ -18,7 +18,7 @@ def getInfos(request):
     countServicesBeta = Service.objects.filter(status__nom__contains=u"BETA").count()
     servicesBeta5 = Service.objects.filter(status__nom__contains=u"BETA")[:5]
     
-    nbStore = Service.objects.filter(type=u"AFS@STORE").count()
+    nbStore = Service.objects.filter(type=u"AFS@Store").count()
     nbFT = Service.objects.filter(type=u"FLUID TOPICS").count()
     nbAFS = Service.objects.filter(type=u"AFS").count()
     nbLicence = Service.objects.filter(type=u"LICENCE").count()

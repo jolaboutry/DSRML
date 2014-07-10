@@ -5,10 +5,17 @@ import blog.sondes as sondes
 # Create your models here.
 
 TYPE = (
-    ('AFS@STORE','store' ),
-    ('FLUID TOPICS', 'ft'),
-    ('AFS','afs'),
-    ('LICENCE', 'licence')
+    ('AFS@Store','AFS@Store' ),
+    ('ft', 'Fluid Topics'),
+    ('afs','AFS'),
+    ('licence', 'Licence')
+)
+
+STATUS = (
+    ('stable','STABLE' ),
+    ('rc', 'RC'),
+    ('beta','BETA'),
+    ('alpha','ALPHA')
 )
 
 class Service(models.Model):
@@ -31,7 +38,7 @@ class Service(models.Model):
         return "%s " %(self.nom)
     
 class Status(models.Model):
-    nom = models.CharField(max_length=25) 
+    nom = models.CharField(max_length=8, choices=STATUS) 
     
     class Meta:
         verbose_name_plural = "Status"
